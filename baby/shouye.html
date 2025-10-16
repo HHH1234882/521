@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>恋爱日记</title>
+		<link rel="stylesheet"href="shouye.css"/>
+	</head>
+	<body>
+		<header>
+			<div class="daohang">
+				<div class="nav">
+					<ul>
+						<li><a href="shouye.html">爱情首页</a></li>
+						<li><a href="#">爱情点滴</a>
+							<ul>
+								<li><a href="zhibaoboadexin.html">给欢欢宝宝的信</a></li>
+							</ul>
+						</li>
+						<li><a href="#">我要留言</a>
+							<ul>
+								<li><a href="yijain.html">意见反馈</a></li>
+								<li><a href="wangzhidayi.html">网址答疑</a></li>
+							</ul>
+						</li>
+						<li><a href="jaru.html">注册加入</a>
+							<ul>
+								<li><a href="jaru.html">网页加入</a>
+							</ul>
+						</li>
+						<li><a href="lianxiwom.html">联系我们</a></li>
+						<audio controls>
+			<source src="sucaitupian/凛兮 - 宠坏.mp3" type="audio/mp3"</source>
+		</audio>
+					</ul>
+				</div>
+			</div>
+		</header>
+				
+				<img src="sucaitupian/logo 拷贝.png" width="300px" height="80px" align="left" />
+				<p>&nbsp;</p>
+				
+				<p>&nbsp;</p>
+		<h2><font color="darksalmon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢欢和涵涵</font></h2>
+		
+		<h4 align="right"><font color="hotpink">恋爱时刻</font>&nbsp;&nbsp;&nbsp;&nbsp;</a>|&nbsp;&nbsp;<font color="red">收藏</font></h4>
+			<hr width="5000px" size="3" color="hotpink"/>
+				<style>
+        .container{
+            width:1000px; /*宽度*/
+            height:450px ; /*高度*/
+            /* border:25px solid red; */
+            margin:50px;
+            margin:0px auto; /* 水平居中 */
+            overflow: hidden; /* 溢出隐藏 */
+            position: relative; /* 相对定位 */
+        }
+        .container .scroll{
+            min-width:3000px; /*宽度*/
+            height:100% ; /*高度*/
+            /*border:10px solid blue; 边框*/
+            display: flex; /*弹性布局  这样子项img 图片在一行显示*/
+            /* transform: translateX(-1000px); 水平向左移动1000px，第一张图片被移走*/
+        }
+        /* 图片大小要与最外层容器 container 大小一样 */
+        .container .scroll img{
+            width:1000px; /*宽度*/
+            height: 450px; /*高度*/
+        }
+        .container .button{
+            width:41px;
+            height: 69px;
+            position: absolute; /* 绝对定位 */
+            cursor: pointer ; /* 鼠标指针变成小手 */
+        }
+        .container .prev-button{
+            /* 以下三行代码，控制按扭位置*/
+            top:50%; 
+            left:20px;
+            transform: translateY(-50%);  /* 垂直移向上 动自身距离的一半*/
+            background: url(./images/prev.png) no-repeat; /* 背景图片 不重复 */
+        }
+        .container .next-button{
+            top:50%;
+            right:20px;
+            transform: translateY(-50%); /* 垂直移向上 动自身距离的一半 */
+            background: url(./images/next.png) no-repeat; /* 背景图片 不重复 */
+        }
+        .container .page{
+            position: absolute; /* 绝对定位 */
+            left:0; /* 与相对定位元素（最外层容器）左边距离为0 */
+            bottom:0; /* 与相对定位元素（最外层容器）下边距离为0  */
+            background-color: rgba(0,0,0,.5); /* 黑色半透明背景 */
+            width:100%;
+            height: 50px;
+            display: flex; /* 弹性布局 */
+            align-items: center; /* 子项垂直居中 */
+            justify-content: center; /* 子项水平居中 */
+        }
+        .container .page span{
+            display: inline-block;
+            width:15px;
+            height: 15px;
+            border-radius: 50%;
+            margin:0px 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+         .container .page span.active{
+            background-color: tomato;
+        } 
+    </style>
+</head>
+<body>
+    <div class="container">
+         <div class="scroll">
+            <img src="sucaitupian/lun botu11/xm2拷贝.jpg">
+            <img src="sucaitupian/lun botu11/xm3拷贝.jpg">
+            <img src="48ba8f236525e993d194348a7873047d.jpg">
+            <img src="0f0ad409baf78644f5d3395b6f7fc1e2.jpg" />
+        </div>
+        <!-- 左右按扭 -->
+        <div class="button prev-button"></div>
+        <div class="button next-button"></div>
+        <!-- 分页器 -->
+         <div class="page">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script>
+        // 获取滚动容器
+        const scrollEl=document.querySelector('.scroll');
+        // 获取分页器中的所有span 元素
+        const spans=document.querySelectorAll('.page span');
+        const len=spans.length; // 获取span 元素的个数
+       let currentIndex=0; // 记录当前播放的图片索引（序号）
+       let timer=null; // 用来只存放定时器的变量
+        // 1、给每个 spans元素添加对应的序列号
+        for(let i=0;i<len;i++){
+            spans[i].index=i; // 序列号
+        }
+        // 2、给 span 元素添加点击事件
+        for(let j=0;j<len;j++){
+            spans[j].onclick=function(){
+                clearInterval(timer); // 清除定时器
+                currentIndex=this.index; // 更新当前索引
+                updateSpansClass(spans,this.index); // 更新spans的class
+                // 点击对应 span 时，让元素向左移动负的（span 的索引值 * 1000px）
+                scrollEl.style.transform=`translateX(${-1000 *this.index}px)`; // 水平向左移动1000px，第一张图片被移走
+                autoPlay();
+            }
+        }
+        // 3、更新spans的class
+        function updateSpansClass(spans,index){
+            for(let i=0;i<spans.length;i++){
+                spans[i].classList.remove('active'); // 移除所有span的class
+            }
+            spans[index].classList.add('active'); // 添加当前span的class='active'
+
+        }
+
+        autoPlay();
+        // 自动轮播
+        function autoPlay(){
+            clearInterval(timer); // 清除定时器
+            timer= setInterval(()=>{
+                currentIndex++;  // 当前索引+1
+                if(currentIndex>=len){
+                    currentIndex=0; // 如果大于等于span的个数，则重置为0 回到第一第
+                }
+                updateSpansClass(spans,currentIndex); // 更新spans的class
+                scrollEl.style.transform=`translateX(${-1000 * currentIndex}px)`; // 水平向左移动1000px，第一张图片被移走
+            
+            },3000);
+        }
+
+
+        // 左右按扭事件
+        const prevButton=document.querySelector('.prev-button');
+        const nextButton=document.querySelector('.next-button');
+        // 上一页
+        prevButton.onclick=function(){
+            clearInterval(timer); // 清除定时器
+            prev();
+        }
+        // 下一页
+        nextButton.onclick=function(){
+            clearInterval(timer); // 清除定时器
+            next()
+        }
+
+        // 上一页
+        function prev(){
+            currentIndex--;
+            if(currentIndex<0){
+                currentIndex=len-1; // 如果小于0，则重置为最后一个索引
+            }
+            updateSpansClass(spans,currentIndex); // 更新spans的class
+            scrollEl.style.transform=`translateX(${-1000 * currentIndex}px)`; // 水平向左移动1000px，第一张图片被移走   
+            autoPlay(); // 自动播放
+        }
+        // 下一页
+        function next(){
+            currentIndex++;
+            if(currentIndex>=len){
+                currentIndex=0; // 如果大于等于span的个数，则重置为0 回到第一第
+            }
+            updateSpansClass(spans,currentIndex); // 更新spans的class
+            scrollEl.style.transform=`translateX(${-1000 * currentIndex}px)`; // 水平向左移动1000px，第一张图片被移走
+            autoPlay(); // 自动播放
+        }
+
+    </script>
+</body>
+</html>
+<hr width="5000px" size="3" color="hotpink"/>
+			<h2 align="left"><font color="lightcoral" font face="楷体"><b>爱的开始</b></font></h2>
+			<h3>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们两个是在一局王者荣耀正常的对局相遇，从那刻开始我两命运的齿轮开始转动，那局中，我两互相聊天，结束后互相加好友，从那刻起，我竟不自觉的想一直和她玩，她不在我竟然不想开始游戏，加了好友几天后，我便要了欢欢微信，加上微信后，我们两个每次玩的时候都会叫上对方，仿佛成了游戏搭子，随着时间越来越久，我内心居然想和她恋爱，然后我就开始暗示我的爱意，慢慢的感觉差不多后就开始了表白，我与欢欢的恋爱起始于2022年12月1 日，在我表白之前我们两个还只是王者游戏好友，但是游戏打的多了，陪伴多了，便日久生情了，在2022年12月1 日中午我给你表达出表白，你说你需要考虑，下午给我答复，那段时间我真的既害怕又开心，怕你拒绝，想让你同意，最后以你同意为开始，咱俩就开启了恋爱之旅
+			</h3>
+			<hr width="5000px" size="3" color="hotpink"/>
+			<h2 align="left"><font color="lightcoral" font face="楷体"><b>欢欢靓照</b></font></h2>
+			<p><img src="sucaitupian/欢欢图片/37c6134fda9742432cdae5b26d4c08f1.jpg" width="100px" />
+			<img src="sucaitupian/欢欢图片/f353a34e87bce50cd5525cb4a2e9cf37.jpg" width="100px"/>
+			<img src="sucaitupian/欢欢图片/15e86beceab4726b7631e44d3af29128.jpg" width="120px"/>
+			<img src="sucaitupian/欢欢图片/588bc1af0c1f4956740e89d733421068.jpg" width="269px"/>
+			<img src="sucaitupian/欢欢图片/aa68d0a719c537ab96e9e7f919c45eb5.jpg" width="102px"/>
+			<img src="sucaitupian/欢欢图片/a2a466a4d2b06e0a7ec102525cd652a.jpg" width="97px"/>
+			<img src="sucaitupian/欢欢图片/46f080eac866b90f3d28370275e9427.jpg" width="143px"/>
+			<img src="sucaitupian/欢欢图片/da77e66240e99ecd089141629195e51.jpg" width="156px"/>
+			<img src="sucaitupian/欢欢图片/d78bdd196aa3461eda780d8390944ae.jpg" width="145px"/>
+			</p>
+			<hr width="5000px" size="3" color="hotpink"/>
+			<h2 align="left"><font color="lightcoral" font face="楷体"><b>涵涵靓照</b></font></h2>
+			<img src="sucaitupian/涵涵/2800cd76f89e60142aede827ba0ec34.jpg" width="100px"/>
+			<img src="sucaitupian/涵涵/534a5f5754712d0cb60b37863877623f.jpg" width="92px"/>
+			<img src="sucaitupian/涵涵/7fa7f19e6accbba684cef219448b3f33.jpg" width="100px"/>
+			<img src="sucaitupian/涵涵/e776b0916ca61c741ff308de0fe673c7.jpg" width="100px"/>
+			<hr width="5000px" size="3" color="hotpink"/>
+			<h2 align="left"><font color="lightcoral" font face="楷体"><b>欢欢和涵涵的合照</b></font></h2>
+			<img src="sucaitupian/合照/1b9eda7fad801166cef810ad5a294bb.jpg" width="150px"/>
+			<img src="sucaitupian/合照/2c9ffcec62927fcb1e31c529f76ffa13.jpg" width="113px"/>
+			<img src="sucaitupian/合照/b3fbea8ed5cbfa68e23066afc708be5.jpg" width="113px"/>
+			<img src="sucaitupian/合照/a482d7b9a74be77ca79239b99d1fe02.jpg" width="113px"/>
+			<img src="sucaitupian/合照/446f5434743265c0ca9bbe2d2a20271.jpg" width="113px"/>
+			<img src="sucaitupian/合照/c8b79593e2253536666f3db0fbde0ea5.jpg" width="113px"/>
+			<img src="sucaitupian/合照/69fb4a2306b490223f40770e02a00edf.jpg" width="450px"/>
+			<hr width="5000px" size="3" color="hotpink"/>
+			<h2 align="left"><font color="lightcoral" font face="楷体"><b>恋爱点滴</b></font></h2>
+			<p></p>
+			<img src="sucaitupian/合照/e9cb412ed7fb490b7833fc88272d47f6.jpg" width="400px" />
+			<hr width="5000px" size="3" color="hotpink"/>
+			<h2 align="left"><font color="lightcoral" font face="楷体"><b>网页后言</b></font></h2>
+			<p><font face="微软雅黑">欢欢宝宝，余生还长，以后的路我陪你走，我一定会一天比一天更爱你，更宠你，我也会努力让你家人同意我，同意咱俩的婚姻，努力组建咱俩的小家，实现我们现在想的一件件事情，慢慢的一步一步朝幸福前进，<font color="red">我爱你！</font>亲爱的韦孟欢</p></font>
+			<hr width="5000px" size="3" color="hotpink"/>
+			<h4 align="center"><a href="原因.html">制作原因</a>&nbsp;&nbsp;|<a href="lianxiwom.html">&nbsp;&nbsp;关于我们</a>&nbsp;&nbsp;|<a href="wangzhidayi.html">&nbsp;&nbsp;网址答疑</a></h4>
+			<h4 align="center"><font color="red">免责声明:</font>本网址为个人制作，无侵权，不承担相关法律责任</h4>
+	</body>
+</html>

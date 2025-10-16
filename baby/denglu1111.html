@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录界面</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			@font-face {
+				font-family:'yht';
+				src: url(ysbht.ttf);
+			}
+			.box{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 90vh;
+				background: url(sucaitupian/21b536f22e1de77281d8e3d776d785ff.jpg);
+			}
+			.login{
+				display: flex;
+				width: 1050px;
+				border-radius: 6px;
+				background: aliceblue;
+			}
+			.login img{
+				width: 557px;
+				height: 460px;
+			}
+			form{
+				display: flex;
+				flex-wrap: wrap;
+				align-content: center;
+				width: 100%;
+				justify-content: center;
+				width: 320px;
+			}
+			form h3{
+				font-family: 'yht';
+				font-size: 48px;
+				font-weight: 400;
+				color: #333;
+				margin-bottom: 30px;
+			}
+			form input{
+				outline: none;
+				display: block;
+				width: 305px;
+				height: 50px;
+				border-radius: 6px;
+				border: none;
+				margin: 10px auto;
+				padding-left: 15px;
+				background: rgba(255,255,255,0,6);
+			}
+			form div{
+				width: 100%;
+				margin-top: 30px;
+			}
+			form button{
+				cursor: pointer;
+				display: block;
+				width: 160px;
+				height: 50px;
+				color: #F8F8FF;
+				font-size: 16px;
+				background: #FFB6C1;
+				border-radius: 6px;
+				margin: auto;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="login">
+				<img src="sucaitupian/合照/f50abe5476365b2a9e7a61bce7ce5b8.jpg" alt="">
+				<form onsubmit="checkLogin(event)">
+					<h3>用户登录</h3>
+					<input type="text" id="name" placeholder="请输入您的账号" required>
+					<input type="password" id="password" placeholder="请输入您的密码" required>
+					<div>
+						<button type="submit">登录</button>
+					</div>
+					<label><a href="xuke.html">保密协议与注意事项</label><br></a>
+				</form>
+			</div>
+		</div>
+		<script>
+			function checkLogin(event){
+				event.preventDefault()
+				var name = document.getElementById('name').value;
+				var password = document.getElementById('password').value;
+				
+				if(name !== '欢和奥'){
+					alert('账号不正确')
+					return
+				}
+				if(password !== '1201'){
+					alert('密码不正确')
+				}else{
+					alert('登录成功，首次加载需要多次刷新和耐心的等待')
+					window.location.href = 'https://hhh1234882.github.io/888888/baby/shouye.html'
+				}
+			}
+		</script>
+	</body>
+</html>

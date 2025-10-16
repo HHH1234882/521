@@ -1,0 +1,13 @@
+*{margin: 0;padding: 0;font-family: "微软雅黑";}
+.header{width: 1200px;height: 30px;margin: 0 auto;}
+ul,li{list-style: none;}
+a{text-decoration: none;}
+.daohang{width:100％;min-width: 1200px;margin: 0 auto;background: url(sucaitupian/31528947a55694267b232edda55b47c0.jpg)center;height: 57px;}
+ nav{width: 1200px;margin: 0 auto;overflow: hidden;}
+ .nav ul li{float: left;margin-top: -1px;}
+ .nav ul li a{width: 130px;height: 52px;text-align: center;line-height: 40px;display: block;color: ghostwhite;font-size: 18px;margin: 0 1 5px;padding-top: 5px;}
+ .nav ul li:hover{background: lightpink;}
+ .nav ul li ul{position: absolute;display: none;}
+ .nav ul li ul li{float: none;height: 38px;}
+ .nav ul li ul li a{border-right: none;border-top: 1px dotted#F8F8FF;background: palevioletred;font-size: 16px;padding-top: 0px;height: 38px;}
+ .nav ul li:hover ul{display: block;z-index: 999999999;}
